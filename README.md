@@ -3,7 +3,7 @@
 
 Task given: Build an API for a social network application where users can share thoughts and react to friends' thoughts utilizing the [mongoose](https://www.npmjs.com/package/mongoose) library and [express](https://www.npmjs.com/package/express)
 
-A demonstration video can be found [here]((https://drive.google.com/file/d/1J0FqaJ4EiTPnTQ8fMsnSRakMJ13EbVlc/view)).
+A demonstration video can be found [here](https://drive.google.com/file/d/1J0FqaJ4EiTPnTQ8fMsnSRakMJ13EbVlc/view).
 
 
 ## Installation
