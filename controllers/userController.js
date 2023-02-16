@@ -4,22 +4,18 @@ module.exports = {
   // Get all users
   getUsers(req, res) {
     User.find({})
-    .select('-__v')
+    // query projection: include or exclude field
+    // .select('-__v')
       .populate({
         path: 'thoughts',
         v: '-__v'
       })
-      // .populate({
-      //   path: 'friends',
-      //   v: '-__V'
-      // })
-      .then(users => {
-        res.status(200).json(users);
+      .populate({
+        path: 'friends',
+        v: '-__V'
       })
-      .catch(err => {
-        console.log(err)
-        res.status(500).json({message: err})
-      })
+      .then(users => res.status(200).json(users))
+      .catch(err => res.status(500).json({message: err}))
   },
   // get one user by id
   getUserById(req, res) {
@@ -62,9 +58,7 @@ module.exports = {
         }
         res.status(200).json(updateUser)
       })
-      .catch(err => {
-        res.status(500).json(err)
-      })
+      .catch(err => res.status(500).json(err))
   },
   // delete user
   deleteUser(req, res) {
@@ -77,9 +71,7 @@ module.exports = {
         }
         res.status(200).json(deleteUser)
       })
-      .catch(err => {
-        res.status(500).json(err)
-      })
+      .catch(err => res.status(500).json(err))
   },
   // post route -> add friend to existing user by id
   addFriend(req, res) {
@@ -97,14 +89,11 @@ module.exports = {
         }
         res.status(200).json(addFriend)
       })
-      .catch(err => {
-        res.status(500).json(err)
-      })
+      .catch(err => res.status(500).json(err))
   },
   // delete route -> remove friend by id
   deleteFriend(req, res) {
-    User.findOneAndUpdate(
-      {
+    User.findOneAndUpdate({
         _id: req.params.id
       },
       {
@@ -118,8 +107,6 @@ module.exports = {
         }
         res.status(200).json(friend)
       })
-      .catch(err => {
-        res.status(500).json(err)
-      })
+      .catch(err => res.status(500).json(err))
   }
 };
